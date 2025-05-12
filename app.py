@@ -47,6 +47,11 @@ with gr.Blocks(title="Garbage Classification") as demo:
     with gr.Row():
         with gr.Column():
             image_input = gr.Image(label="Upload Image", type="filepath")
+            gr.Examples(
+                examples=["example_images/img1.jpg", "example_images/img2.jpg", "example_images/img3.jpg"],
+                inputs=image_input,
+                label="Examples",
+            )
             predict_btn = gr.Button("Classify")
 
         with gr.Column():
