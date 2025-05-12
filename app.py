@@ -38,11 +38,11 @@ def classify_all_models(img):
         pred, fig = predict_and_plot(model, img)
         predictions.append(f"{name}: {pred}")
         plots.append(fig)
-    return predictions, plots
+    return "\n".join(predictions), *plots
 
 # Gradio Blocks UI
 with gr.Blocks() as demo:
-    gr.Markdown("## 🗑️ Garbage Classifier with 3 Models - Upload an Image")
+    gr.Markdown("## Garbage Classifier with 3 Models - Upload an Image")
 
     with gr.Row():
         with gr.Column():
@@ -56,6 +56,6 @@ with gr.Blocks() as demo:
                 plot2 = gr.Plot(label="Model 2 Predictions")
                 plot3 = gr.Plot(label="Model 3 Predictions")
 
-    predict_btn.click(fn=classify_all_models, inputs=image_input, outputs=[label_output, [plot1, plot2, plot3]])
+    predict_btn.click(fn=classify_all_models, inputs=image_input, outputs=[label_output, plot1, plot2, plot3])
 
 demo.launch()
