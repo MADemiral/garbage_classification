@@ -41,7 +41,7 @@ def classify_all_models(img):
     return "\n".join(predictions), *plots
 
 # Gradio Blocks UI
-with gr.Blocks() as demo:
+with gr.Blocks(title="Garbage Classification") as demo:
     gr.Markdown("## Garbage Classifier with 3 Models - Upload an Image")
 
     with gr.Row():
@@ -58,4 +58,4 @@ with gr.Blocks() as demo:
 
     predict_btn.click(fn=classify_all_models, inputs=image_input, outputs=[label_output, plot1, plot2, plot3])
 
-demo.launch()
+demo.launch(share=True,server_name="0.0.0.0", server_port=7860)
